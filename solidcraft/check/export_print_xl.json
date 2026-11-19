@@ -1,0 +1,69 @@
+{
+ "commands": [
+  {
+   "command": "file.export_step",
+   "params": {
+    "path": "es3c28p_case_xl_assembly.step"
+   }
+  },
+  {
+   "command": "solid.move",
+   "params": {
+    "bodies": [
+     "Front_Bezel",
+     "Rear_Body"
+    ],
+    "axis": [
+     1,
+     0,
+     0
+    ],
+    "angle": "180 deg"
+   }
+  },
+  {
+   "command": "file.export_stl",
+   "params": {
+    "path": "print_xl/front_bezel.stl",
+    "bodies": [
+     "Front_Bezel"
+    ],
+    "quality": "fine"
+   }
+  },
+  {
+   "command": "file.export_stl",
+   "params": {
+    "path": "print_xl/rear_body.stl",
+    "bodies": [
+     "Rear_Body"
+    ],
+    "quality": "fine"
+   }
+  },
+  {
+   "command": "file.export_3mf",
+   "params": {
+    "path": "print_xl/es3c28p_case_xl.3mf"
+   }
+  },
+  {
+   "command": "file.export_step",
+   "params": {
+    "path": "print_xl/front_bezel.step",
+    "bodies": [
+     "Front_Bezel"
+    ]
+   }
+  },
+  {
+   "command": "file.export_step",
+   "params": {
+    "path": "print_xl/rear_body.step",
+    "bodies": [
+     "Rear_Body"
+    ]
+   }
+  }
+ ]
+}

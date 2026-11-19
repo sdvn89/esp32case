@@ -1,0 +1,159 @@
+{
+ "commands": [
+  {
+   "command": "file.insert_step",
+   "params": {
+    "path": "check/ES3C28P_3D.step",
+    "name": "ES3C28P_board"
+   }
+  },
+  {
+   "command": "sketch.create",
+   "params": {
+    "plane": "XZ",
+    "offset": 15.25,
+    "name": "Battery dummy"
+   }
+  },
+  {
+   "command": "sketch.line",
+   "params": {
+    "points": [
+     [
+      -3.2563,
+      12.1254
+     ],
+     [
+      -14.3809,
+      46.3634
+     ],
+     [
+      -21.9894,
+      43.8913
+     ],
+     [
+      -10.8648,
+      9.6533
+     ]
+    ],
+    "closed": true
+   }
+  },
+  {
+   "command": "sketch.finish",
+   "params": {}
+  },
+  {
+   "command": "solid.extrude",
+   "params": {
+    "sketch": "Battery dummy",
+    "distance": 67.5,
+    "operation": "new",
+    "body_name": "Battery_dummy"
+   }
+  },
+  {
+   "command": "solid.box",
+   "params": {
+    "length": 8.599999999999998,
+    "width": 3.490000000000001,
+    "height": 3.6000000000000014,
+    "corner": [
+     -32.05,
+     4.81,
+     -14.8
+    ],
+    "operation": "new",
+    "body_name": "Switch_body"
+   }
+  },
+  {
+   "command": "solid.box",
+   "params": {
+    "length": 5.799999999999997,
+    "width": 4.0,
+    "height": 0.8000000000000007,
+    "corner": [
+     -30.65,
+     8.3,
+     -13.4
+    ],
+    "operation": "new",
+    "body_name": "Switch_pins"
+   }
+  },
+  {
+   "command": "solid.box",
+   "params": {
+    "length": 1.5,
+    "width": 3.0,
+    "height": 1.5,
+    "corner": [
+     -27.5,
+     1.7999999999999998,
+     -13.75
+    ],
+    "operation": "new",
+    "body_name": "Switch_lever_on"
+   }
+  },
+  {
+   "command": "solid.box",
+   "params": {
+    "length": 1.5,
+    "width": 3.0,
+    "height": 1.5,
+    "corner": [
+     -29.5,
+     1.7999999999999998,
+     -13.75
+    ],
+    "operation": "new",
+    "body_name": "Switch_lever_off"
+   }
+  },
+  {
+   "command": "solid.box",
+   "params": {
+    "length": 4.199999999999999,
+    "width": 4.199999999999999,
+    "height": 4.0,
+    "corner": [
+     -8.85,
+     7.9,
+     0.0
+    ],
+    "operation": "new",
+    "body_name": "Insert_dummy_1"
+   }
+  },
+  {
+   "command": "inspect.interference",
+   "params": {
+    "budget_s": 900,
+    "exclude_pairs": [
+     [
+      "Switch_lever_on",
+      "Switch_lever_off"
+     ],
+     [
+      "Switch_body",
+      "Switch_pins"
+     ],
+     [
+      "Switch_body",
+      "Switch_lever_on"
+     ],
+     [
+      "Switch_body",
+      "Switch_lever_off"
+     ],
+     [
+      "Insert_dummy_1",
+      "Front_Bezel"
+     ]
+    ]
+   }
+  }
+ ]
+}

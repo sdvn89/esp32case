@@ -1,0 +1,2540 @@
+{
+ "commands": [
+  {
+   "command": "parameters.add",
+   "params": {
+    "name": "TH",
+    "expression": "18 deg",
+    "comment": "Goc nga man hinh ve sau. Khoang 15-21 deg"
+   }
+  },
+  {
+   "command": "parameters.add",
+   "params": {
+    "name": "WALL",
+    "expression": "2 mm",
+    "comment": "Do day thanh vo. Khoang 1.6-2.4 mm, nho hon FIL it nhat 0.3 mm"
+   }
+  },
+  {
+   "command": "parameters.add",
+   "params": {
+    "name": "CLR",
+    "expression": "0.4 mm",
+    "comment": "Khe ho bo mach - thanh"
+   }
+  },
+  {
+   "command": "parameters.add",
+   "params": {
+    "name": "FIL",
+    "expression": "3 mm",
+    "comment": "Bo tron canh ngoai. Khoang 2.6-4 mm, lon hon WALL it nhat 0.3 mm"
+   }
+  },
+  {
+   "command": "parameters.add",
+   "params": {
+    "name": "LB",
+    "expression": "65 mm",
+    "comment": "Chieu dai de doc mat ban. Khoang 62-70 mm"
+   }
+  },
+  {
+   "command": "parameters.add",
+   "params": {
+    "name": "ZTB",
+    "expression": "-12 mm",
+    "comment": "Do sau goc tren-sau (z). Khoang -10 den -15 mm"
+   }
+  },
+  {
+   "command": "parameters.add",
+   "params": {
+    "name": "HDESK",
+    "expression": "-2.7 mm",
+    "comment": "Vi tri mat ban so voi bo mach"
+   }
+  },
+  {
+   "command": "parameters.add",
+   "params": {
+    "name": "ZS",
+    "expression": "-1.6 mm",
+    "comment": "Mat phan chia mat truoc / than sau"
+   }
+  },
+  {
+   "command": "parameters.add",
+   "params": {
+    "name": "TONGUE",
+    "expression": "2.5 mm",
+    "comment": "Chieu cao go dinh vi"
+   }
+  },
+  {
+   "command": "parameters.add",
+   "params": {
+    "name": "EW",
+    "expression": "0 mm",
+    "comment": "Phan noi rong vo moi ben (ngoai bo mach)"
+   }
+  },
+  {
+   "command": "parameters.add",
+   "params": {
+    "name": "XT",
+    "expression": "-52.75 mm - CLR - WALL",
+    "comment": "Mat tren ngoai (x)"
+   }
+  },
+  {
+   "command": "parameters.add",
+   "params": {
+    "name": "YA",
+    "expression": "6 mm - CLR - WALL - EW",
+    "comment": "Mat trai ngoai (y)"
+   }
+  },
+  {
+   "command": "parameters.add",
+   "params": {
+    "name": "YW",
+    "expression": "86 mm + 2 * (CLR + WALL + EW)",
+    "comment": "Chieu rong ngoai"
+   }
+  },
+  {
+   "command": "parameters.add",
+   "params": {
+    "name": "ZF",
+    "expression": "4.3 mm + 0.2 mm + WALL",
+    "comment": "Mat truoc ngoai (z)"
+   }
+  },
+  {
+   "command": "parameters.add",
+   "params": {
+    "name": "XF",
+    "expression": "(ZF * sin(TH) - HDESK) / cos(TH)",
+    "comment": "Canh truoc-duoi (x)"
+   }
+  },
+  {
+   "command": "parameters.add",
+   "params": {
+    "name": "BBX",
+    "expression": "XF - LB * sin(TH)",
+    "comment": "Goc sau-duoi (x)"
+   }
+  },
+  {
+   "command": "parameters.add",
+   "params": {
+    "name": "BBZ",
+    "expression": "ZF - LB * cos(TH)",
+    "comment": "Goc sau-duoi (z)"
+   }
+  },
+  {
+   "command": "parameters.favorite",
+   "params": {
+    "name": "TH",
+    "favorite": true
+   }
+  },
+  {
+   "command": "parameters.favorite",
+   "params": {
+    "name": "WALL",
+    "favorite": true
+   }
+  },
+  {
+   "command": "parameters.favorite",
+   "params": {
+    "name": "FIL",
+    "favorite": true
+   }
+  },
+  {
+   "command": "parameters.favorite",
+   "params": {
+    "name": "LB",
+    "favorite": true
+   }
+  },
+  {
+   "command": "parameters.favorite",
+   "params": {
+    "name": "ZTB",
+    "favorite": true
+   }
+  },
+  {
+   "command": "sketch.create",
+   "params": {
+    "plane": "XZ",
+    "offset": "YA",
+    "name": "Wedge profile"
+   }
+  },
+  {
+   "command": "sketch.line",
+   "params": {
+    "points": [
+     [
+      "XT",
+      "-ZF"
+     ],
+     [
+      "XF",
+      "-ZF"
+     ],
+     [
+      "BBX",
+      "-BBZ"
+     ],
+     [
+      "XT",
+      "-ZTB"
+     ]
+    ],
+    "closed": true
+   }
+  },
+  {
+   "command": "sketch.finish",
+   "params": {}
+  },
+  {
+   "command": "solid.extrude",
+   "params": {
+    "sketch": "Wedge profile",
+    "distance": "YW",
+    "operation": "new",
+    "body_name": "Case",
+    "name": "Case extrude"
+   }
+  },
+  {
+   "command": "solid.fillet",
+   "params": {
+    "body": "Case",
+    "edges": [
+     [
+      -55.15,
+      49.0,
+      6.5
+     ],
+     [
+      4.950926030957213,
+      49.0,
+      6.5
+     ],
+     [
+      -15.135178603414367,
+      49.0,
+      -55.31867355918498
+     ],
+     [
+      -55.15,
+      49.0,
+      -12.0
+     ],
+     [
+      -25.099536984521393,
+      3.5999999999999996,
+      6.5
+     ],
+     [
+      -25.099536984521393,
+      94.4,
+      6.5
+     ],
+     [
+      -5.092126286228577,
+      3.5999999999999996,
+      -24.40933677959249
+     ],
+     [
+      -5.092126286228577,
+      94.4,
+      -24.40933677959249
+     ],
+     [
+      -35.14258930170718,
+      3.5999999999999996,
+      -33.65933677959249
+     ],
+     [
+      -35.14258930170718,
+      94.4,
+      -33.65933677959249
+     ],
+     [
+      -55.15,
+      3.5999999999999996,
+      -2.75
+     ],
+     [
+      -55.15,
+      94.4,
+      -2.75
+     ]
+    ],
+    "radius": "FIL",
+    "name": "Case fillet"
+   }
+  },
+  {
+   "command": "solid.extrude",
+   "params": {
+    "sketch": "Wedge profile",
+    "distance": "YW",
+    "operation": "new",
+    "body_name": "OuterRef",
+    "name": "OuterRef extrude"
+   }
+  },
+  {
+   "command": "solid.fillet",
+   "params": {
+    "body": "OuterRef",
+    "edges": [
+     [
+      -55.15,
+      49.0,
+      6.5
+     ],
+     [
+      4.950926030957213,
+      49.0,
+      6.5
+     ],
+     [
+      -15.135178603414367,
+      49.0,
+      -55.31867355918498
+     ],
+     [
+      -55.15,
+      49.0,
+      -12.0
+     ],
+     [
+      -25.099536984521393,
+      3.5999999999999996,
+      6.5
+     ],
+     [
+      -25.099536984521393,
+      94.4,
+      6.5
+     ],
+     [
+      -5.092126286228577,
+      3.5999999999999996,
+      -24.40933677959249
+     ],
+     [
+      -5.092126286228577,
+      94.4,
+      -24.40933677959249
+     ],
+     [
+      -35.14258930170718,
+      3.5999999999999996,
+      -33.65933677959249
+     ],
+     [
+      -35.14258930170718,
+      94.4,
+      -33.65933677959249
+     ],
+     [
+      -55.15,
+      3.5999999999999996,
+      -2.75
+     ],
+     [
+      -55.15,
+      94.4,
+      -2.75
+     ]
+    ],
+    "radius": "FIL",
+    "name": "OuterRef fillet"
+   }
+  },
+  {
+   "command": "solid.split_body",
+   "params": {
+    "body": "Case",
+    "plane": {
+     "origin": [
+      0,
+      0,
+      -1.6
+     ],
+     "normal": [
+      0,
+      0,
+      1
+     ]
+    },
+    "name": "Split front/rear"
+   }
+  },
+  {
+   "command": "body.rename",
+   "params": {
+    "body": "Case",
+    "name": "Front_Bezel"
+   }
+  },
+  {
+   "command": "body.rename",
+   "params": {
+    "body": "Case (1)",
+    "name": "Rear_Body"
+   }
+  },
+  {
+   "command": "sketch.create",
+   "params": {
+    "plane": "XZ",
+    "offset": "YA + WALL",
+    "name": "Cavity profile"
+   }
+  },
+  {
+   "command": "sketch.line",
+   "params": {
+    "points": [
+     [
+      "XT",
+      "-ZF"
+     ],
+     [
+      "XF",
+      "-ZF"
+     ],
+     [
+      "BBX",
+      "-BBZ"
+     ],
+     [
+      "XT",
+      "-ZTB"
+     ]
+    ],
+    "closed": true,
+    "construction": true
+   }
+  },
+  {
+   "command": "sketch.offset",
+   "params": {
+    "curves": [
+     "l1",
+     "l2",
+     "l3",
+     "l4"
+    ],
+    "distance": "WALL",
+    "side": [
+     -30.0,
+     10.0
+    ]
+   }
+  },
+  {
+   "command": "sketch.finish",
+   "params": {}
+  },
+  {
+   "command": "solid.extrude",
+   "params": {
+    "sketch": "Cavity profile",
+    "distance": "YW - 2 * WALL",
+    "operation": "new",
+    "body_name": "Cavity",
+    "name": "Cavity extrude"
+   }
+  },
+  {
+   "command": "solid.fillet",
+   "params": {
+    "body": "Cavity",
+    "edges": [
+     [
+      -53.15,
+      49.0,
+      4.5
+     ],
+     [
+      2.1981621900148656,
+      49.0,
+      4.5
+     ],
+     [
+      -15.982394558356305,
+      49.0,
+      -51.454000201142414
+     ],
+     [
+      -53.15,
+      49.0,
+      -11.217625005412255
+     ],
+     [
+      -25.475918904992568,
+      5.6,
+      4.5
+     ],
+     [
+      -25.475918904992568,
+      92.4,
+      4.5
+     ],
+     [
+      -6.892116184170719,
+      5.6,
+      -23.477000100571207
+     ],
+     [
+      -6.892116184170719,
+      92.4,
+      -23.477000100571207
+     ],
+     [
+      -34.566197279178155,
+      5.6,
+      -31.335812603277333
+     ],
+     [
+      -34.566197279178155,
+      92.4,
+      -31.335812603277333
+     ],
+     [
+      -53.15,
+      5.6,
+      -3.3588125027061277
+     ],
+     [
+      -53.15,
+      92.4,
+      -3.3588125027061277
+     ]
+    ],
+    "radius": "FIL - WALL",
+    "name": "Cavity fillet"
+   }
+  },
+  {
+   "command": "solid.combine",
+   "params": {
+    "target": "Front_Bezel",
+    "tools": [
+     "Cavity"
+    ],
+    "operation": "cut",
+    "keep_tools": true,
+    "name": "Hollow front"
+   }
+  },
+  {
+   "command": "solid.combine",
+   "params": {
+    "target": "Rear_Body",
+    "tools": [
+     "Cavity"
+    ],
+    "operation": "cut",
+    "keep_tools": true,
+    "name": "Hollow rear"
+   }
+  },
+  {
+   "command": "sketch.create",
+   "params": {
+    "plane": "XY",
+    "offset": 7.5,
+    "name": "Window"
+   }
+  },
+  {
+   "command": "sketch.draw.dimensioned",
+   "params": {
+    "command": "sketch.rectangle.rounded",
+    "params": {
+     "p0": [
+      -51.75,
+      15.4
+     ],
+     "p1": [
+      -3.75,
+      82.6
+     ],
+     "radius": 1.0
+    },
+    "as_drawn": true,
+    "locate": true
+   }
+  },
+  {
+   "command": "sketch.finish",
+   "params": {}
+  },
+  {
+   "command": "solid.extrude",
+   "params": {
+    "sketch": "Window",
+    "distance": 4,
+    "direction": "negative",
+    "operation": "cut",
+    "targets": [
+     "Front_Bezel"
+    ],
+    "name": "Window cut"
+   }
+  },
+  {
+   "command": "solid.chamfer",
+   "params": {
+    "body": "Front_Bezel",
+    "edges": [
+     [
+      -51.75,
+      49.0,
+      6.5
+     ]
+    ],
+    "distance": 0.4,
+    "name": "Window chamfer"
+   }
+  },
+  {
+   "command": "solid.cylinder",
+   "params": {
+    "radius": 4.4,
+    "height": 4.5,
+    "base": [
+     -6.75,
+     10.0,
+     0.0
+    ],
+    "operation": "new",
+    "body_name": "Boss1",
+    "name": "Boss 1"
+   }
+  },
+  {
+   "command": "solid.combine",
+   "params": {
+    "target": "Boss1",
+    "tools": [
+     "OuterRef"
+    ],
+    "operation": "intersect",
+    "keep_tools": true,
+    "name": "Trim boss 1"
+   }
+  },
+  {
+   "command": "solid.box",
+   "params": {
+    "length": 50.7,
+    "width": 70.19999999999999,
+    "height": 4.59,
+    "corner": [
+     -53.1,
+     13.9,
+     -0.1
+    ],
+    "operation": "cut",
+    "targets": [
+     "Boss1"
+    ],
+    "name": "Clip boss 1"
+   }
+  },
+  {
+   "command": "solid.combine",
+   "params": {
+    "target": "Front_Bezel",
+    "tools": [
+     "Boss1"
+    ],
+    "operation": "join",
+    "name": "Join boss 1"
+   }
+  },
+  {
+   "command": "solid.cylinder",
+   "params": {
+    "radius": 1.65,
+    "height": 5.45,
+    "base": [
+     -6.75,
+     10.0,
+     -1.0
+    ],
+    "operation": "cut",
+    "targets": [
+     "Front_Bezel"
+    ],
+    "name": "Screw hole boss 1"
+   }
+  },
+  {
+   "command": "solid.cylinder",
+   "params": {
+    "radius": 2.0,
+    "height": 5.5,
+    "base": [
+     -6.75,
+     10.0,
+     -1.0
+    ],
+    "operation": "cut",
+    "targets": [
+     "Front_Bezel"
+    ],
+    "name": "Insert hole 1"
+   }
+  },
+  {
+   "command": "solid.cylinder",
+   "params": {
+    "radius": 4.4,
+    "height": 4.5,
+    "base": [
+     -48.75,
+     10.0,
+     0.0
+    ],
+    "operation": "new",
+    "body_name": "Boss2",
+    "name": "Boss 2"
+   }
+  },
+  {
+   "command": "solid.combine",
+   "params": {
+    "target": "Boss2",
+    "tools": [
+     "OuterRef"
+    ],
+    "operation": "intersect",
+    "keep_tools": true,
+    "name": "Trim boss 2"
+   }
+  },
+  {
+   "command": "solid.box",
+   "params": {
+    "length": 50.7,
+    "width": 70.19999999999999,
+    "height": 4.59,
+    "corner": [
+     -53.1,
+     13.9,
+     -0.1
+    ],
+    "operation": "cut",
+    "targets": [
+     "Boss2"
+    ],
+    "name": "Clip boss 2"
+   }
+  },
+  {
+   "command": "solid.combine",
+   "params": {
+    "target": "Front_Bezel",
+    "tools": [
+     "Boss2"
+    ],
+    "operation": "join",
+    "name": "Join boss 2"
+   }
+  },
+  {
+   "command": "solid.cylinder",
+   "params": {
+    "radius": 1.65,
+    "height": 5.45,
+    "base": [
+     -48.75,
+     10.0,
+     -1.0
+    ],
+    "operation": "cut",
+    "targets": [
+     "Front_Bezel"
+    ],
+    "name": "Screw hole boss 2"
+   }
+  },
+  {
+   "command": "solid.cylinder",
+   "params": {
+    "radius": 2.0,
+    "height": 5.5,
+    "base": [
+     -48.75,
+     10.0,
+     -1.0
+    ],
+    "operation": "cut",
+    "targets": [
+     "Front_Bezel"
+    ],
+    "name": "Insert hole 2"
+   }
+  },
+  {
+   "command": "solid.cylinder",
+   "params": {
+    "radius": 4.4,
+    "height": 4.5,
+    "base": [
+     -6.75,
+     88.0,
+     0.0
+    ],
+    "operation": "new",
+    "body_name": "Boss3",
+    "name": "Boss 3"
+   }
+  },
+  {
+   "command": "solid.combine",
+   "params": {
+    "target": "Boss3",
+    "tools": [
+     "OuterRef"
+    ],
+    "operation": "intersect",
+    "keep_tools": true,
+    "name": "Trim boss 3"
+   }
+  },
+  {
+   "command": "solid.box",
+   "params": {
+    "length": 50.7,
+    "width": 70.19999999999999,
+    "height": 4.59,
+    "corner": [
+     -53.1,
+     13.9,
+     -0.1
+    ],
+    "operation": "cut",
+    "targets": [
+     "Boss3"
+    ],
+    "name": "Clip boss 3"
+   }
+  },
+  {
+   "command": "solid.combine",
+   "params": {
+    "target": "Front_Bezel",
+    "tools": [
+     "Boss3"
+    ],
+    "operation": "join",
+    "name": "Join boss 3"
+   }
+  },
+  {
+   "command": "solid.cylinder",
+   "params": {
+    "radius": 1.65,
+    "height": 5.45,
+    "base": [
+     -6.75,
+     88.0,
+     -1.0
+    ],
+    "operation": "cut",
+    "targets": [
+     "Front_Bezel"
+    ],
+    "name": "Screw hole boss 3"
+   }
+  },
+  {
+   "command": "solid.cylinder",
+   "params": {
+    "radius": 2.0,
+    "height": 5.5,
+    "base": [
+     -6.75,
+     88.0,
+     -1.0
+    ],
+    "operation": "cut",
+    "targets": [
+     "Front_Bezel"
+    ],
+    "name": "Insert hole 3"
+   }
+  },
+  {
+   "command": "solid.cylinder",
+   "params": {
+    "radius": 4.4,
+    "height": 4.5,
+    "base": [
+     -48.75,
+     88.0,
+     0.0
+    ],
+    "operation": "new",
+    "body_name": "Boss4",
+    "name": "Boss 4"
+   }
+  },
+  {
+   "command": "solid.combine",
+   "params": {
+    "target": "Boss4",
+    "tools": [
+     "OuterRef"
+    ],
+    "operation": "intersect",
+    "keep_tools": true,
+    "name": "Trim boss 4"
+   }
+  },
+  {
+   "command": "solid.box",
+   "params": {
+    "length": 50.7,
+    "width": 70.19999999999999,
+    "height": 4.59,
+    "corner": [
+     -53.1,
+     13.9,
+     -0.1
+    ],
+    "operation": "cut",
+    "targets": [
+     "Boss4"
+    ],
+    "name": "Clip boss 4"
+   }
+  },
+  {
+   "command": "solid.combine",
+   "params": {
+    "target": "Front_Bezel",
+    "tools": [
+     "Boss4"
+    ],
+    "operation": "join",
+    "name": "Join boss 4"
+   }
+  },
+  {
+   "command": "solid.cylinder",
+   "params": {
+    "radius": 1.65,
+    "height": 5.45,
+    "base": [
+     -48.75,
+     88.0,
+     -1.0
+    ],
+    "operation": "cut",
+    "targets": [
+     "Front_Bezel"
+    ],
+    "name": "Screw hole boss 4"
+   }
+  },
+  {
+   "command": "solid.cylinder",
+   "params": {
+    "radius": 2.0,
+    "height": 5.5,
+    "base": [
+     -48.75,
+     88.0,
+     -1.0
+    ],
+    "operation": "cut",
+    "targets": [
+     "Front_Bezel"
+    ],
+    "name": "Insert hole 4"
+   }
+  },
+  {
+   "command": "sketch.create",
+   "params": {
+    "plane": "XZ",
+    "offset": "YA + WALL - 0.9 mm",
+    "name": "Lip profile"
+   }
+  },
+  {
+   "command": "sketch.line",
+   "params": {
+    "points": [
+     [
+      "XT",
+      "-ZF"
+     ],
+     [
+      "XF",
+      "-ZF"
+     ],
+     [
+      "BBX",
+      "-BBZ"
+     ],
+     [
+      "XT",
+      "-ZTB"
+     ]
+    ],
+    "closed": true,
+    "construction": true
+   }
+  },
+  {
+   "command": "sketch.offset",
+   "params": {
+    "curves": [
+     "l1",
+     "l2",
+     "l3",
+     "l4"
+    ],
+    "distance": "WALL - 0.9 mm",
+    "side": [
+     -30.0,
+     10.0
+    ]
+   }
+  },
+  {
+   "command": "sketch.finish",
+   "params": {}
+  },
+  {
+   "command": "solid.extrude",
+   "params": {
+    "sketch": "Lip profile",
+    "distance": "YW - 2 * (WALL - 0.9 mm)",
+    "operation": "new",
+    "body_name": "Lip",
+    "name": "Lip extrude"
+   }
+  },
+  {
+   "command": "solid.fillet",
+   "params": {
+    "body": "Lip",
+    "edges": [
+     [
+      -54.05,
+      49.0,
+      5.4
+     ],
+     [
+      3.4369059184389217,
+      49.0,
+      5.4
+     ],
+     [
+      -15.601147378632433,
+      49.0,
+      -53.19310321226157
+     ],
+     [
+      -54.05,
+      49.0,
+      -11.569693752976745
+     ],
+     [
+      -25.306547040780536,
+      4.699999999999999,
+      5.4
+     ],
+     [
+      -25.306547040780536,
+      93.30000000000001,
+      5.4
+     ],
+     [
+      -6.082120730096756,
+      4.699999999999999,
+      -23.896551606130785
+     ],
+     [
+      -6.082120730096756,
+      93.30000000000001,
+      -23.896551606130785
+     ],
+     [
+      -34.825573689316215,
+      4.699999999999999,
+      -32.381398482619154
+     ],
+     [
+      -34.825573689316215,
+      93.30000000000001,
+      -32.381398482619154
+     ],
+     [
+      -54.05,
+      4.699999999999999,
+      -3.0848468764883723
+     ],
+     [
+      -54.05,
+      93.30000000000001,
+      -3.0848468764883723
+     ]
+    ],
+    "radius": "FIL - WALL + 0.9 mm",
+    "name": "Lip fillet"
+   }
+  },
+  {
+   "command": "solid.combine",
+   "params": {
+    "target": "Lip",
+    "tools": [
+     "Cavity"
+    ],
+    "operation": "cut",
+    "keep_tools": true,
+    "name": "Lip ring"
+   }
+  },
+  {
+   "command": "solid.box",
+   "params": {
+    "length": 200,
+    "width": 200,
+    "height": 2.5,
+    "corner": [
+     -120,
+     -50,
+     -4.1
+    ],
+    "operation": "new",
+    "body_name": "LipSlab",
+    "name": "Lip slab"
+   }
+  },
+  {
+   "command": "solid.combine",
+   "params": {
+    "target": "Lip",
+    "tools": [
+     "LipSlab"
+    ],
+    "operation": "intersect",
+    "name": "Lip band"
+   }
+  },
+  {
+   "command": "solid.combine",
+   "params": {
+    "target": "Front_Bezel",
+    "tools": [
+     "Lip"
+    ],
+    "operation": "join",
+    "name": "Join lip"
+   }
+  },
+  {
+   "command": "sketch.create",
+   "params": {
+    "plane": "XZ",
+    "offset": "YA + WALL - 1.05 mm",
+    "name": "Rabbet profile"
+   }
+  },
+  {
+   "command": "sketch.line",
+   "params": {
+    "points": [
+     [
+      "XT",
+      "-ZF"
+     ],
+     [
+      "XF",
+      "-ZF"
+     ],
+     [
+      "BBX",
+      "-BBZ"
+     ],
+     [
+      "XT",
+      "-ZTB"
+     ]
+    ],
+    "closed": true,
+    "construction": true
+   }
+  },
+  {
+   "command": "sketch.offset",
+   "params": {
+    "curves": [
+     "l1",
+     "l2",
+     "l3",
+     "l4"
+    ],
+    "distance": "WALL - 1.05 mm",
+    "side": [
+     -30.0,
+     10.0
+    ]
+   }
+  },
+  {
+   "command": "sketch.finish",
+   "params": {}
+  },
+  {
+   "command": "solid.extrude",
+   "params": {
+    "sketch": "Rabbet profile",
+    "distance": "YW - 2 * (WALL - 1.05 mm)",
+    "operation": "new",
+    "body_name": "Rabbet",
+    "name": "Rabbet extrude"
+   }
+  },
+  {
+   "command": "solid.fillet",
+   "params": {
+    "body": "Rabbet",
+    "edges": [
+     [
+      -54.199999999999996,
+      49.0,
+      5.55
+     ],
+     [
+      3.6433632065095978,
+      49.0,
+      5.55
+     ],
+     [
+      -15.537606182011785,
+      49.0,
+      -53.482953714114764
+     ],
+     [
+      -54.199999999999996,
+      49.0,
+      -11.628371877570826
+     ],
+     [
+      -25.2783183967452,
+      4.55,
+      5.55
+     ],
+     [
+      -25.2783183967452,
+      93.45,
+      5.55
+     ],
+     [
+      -5.947121487751094,
+      4.55,
+      -23.966476857057383
+     ],
+     [
+      -5.947121487751094,
+      93.45,
+      -23.966476857057383
+     ],
+     [
+      -34.86880309100589,
+      4.55,
+      -32.55566279584279
+     ],
+     [
+      -34.86880309100589,
+      93.45,
+      -32.55566279584279
+     ],
+     [
+      -54.199999999999996,
+      4.55,
+      -3.039185938785413
+     ],
+     [
+      -54.199999999999996,
+      93.45,
+      -3.039185938785413
+     ]
+    ],
+    "radius": "FIL - WALL + 1.05 mm",
+    "name": "Rabbet fillet"
+   }
+  },
+  {
+   "command": "solid.combine",
+   "params": {
+    "target": "Rabbet",
+    "tools": [
+     "Cavity"
+    ],
+    "operation": "cut",
+    "keep_tools": true,
+    "name": "Rabbet ring"
+   }
+  },
+  {
+   "command": "solid.box",
+   "params": {
+    "length": 200,
+    "width": 200,
+    "height": 2.7,
+    "corner": [
+     -120,
+     -50,
+     -4.3
+    ],
+    "operation": "new",
+    "body_name": "RabbetSlab",
+    "name": "Rabbet slab"
+   }
+  },
+  {
+   "command": "solid.combine",
+   "params": {
+    "target": "Rabbet",
+    "tools": [
+     "RabbetSlab"
+    ],
+    "operation": "intersect",
+    "name": "Rabbet band"
+   }
+  },
+  {
+   "command": "solid.remove",
+   "params": {
+    "bodies": [
+     "Cavity"
+    ],
+    "name": "Remove cavity helper"
+   }
+  },
+  {
+   "command": "solid.cylinder",
+   "params": {
+    "radius": 4.6,
+    "height": 58.4,
+    "base": [
+     -6.75,
+     10.0,
+     -60
+    ],
+    "operation": "new",
+    "body_name": "Post1",
+    "name": "Screw post 1"
+   }
+  },
+  {
+   "command": "solid.combine",
+   "params": {
+    "target": "Post1",
+    "tools": [
+     "OuterRef"
+    ],
+    "operation": "intersect",
+    "keep_tools": true,
+    "name": "Trim post 1"
+   }
+  },
+  {
+   "command": "solid.cylinder",
+   "params": {
+    "radius": 4.6,
+    "height": 58.4,
+    "base": [
+     -48.75,
+     10.0,
+     -60
+    ],
+    "operation": "new",
+    "body_name": "Post2",
+    "name": "Screw post 2"
+   }
+  },
+  {
+   "command": "solid.combine",
+   "params": {
+    "target": "Post2",
+    "tools": [
+     "OuterRef"
+    ],
+    "operation": "intersect",
+    "keep_tools": true,
+    "name": "Trim post 2"
+   }
+  },
+  {
+   "command": "solid.cylinder",
+   "params": {
+    "radius": 4.6,
+    "height": 58.4,
+    "base": [
+     -6.75,
+     88.0,
+     -60
+    ],
+    "operation": "new",
+    "body_name": "Post3",
+    "name": "Screw post 3"
+   }
+  },
+  {
+   "command": "solid.combine",
+   "params": {
+    "target": "Post3",
+    "tools": [
+     "OuterRef"
+    ],
+    "operation": "intersect",
+    "keep_tools": true,
+    "name": "Trim post 3"
+   }
+  },
+  {
+   "command": "solid.cylinder",
+   "params": {
+    "radius": 4.6,
+    "height": 58.4,
+    "base": [
+     -48.75,
+     88.0,
+     -60
+    ],
+    "operation": "new",
+    "body_name": "Post4",
+    "name": "Screw post 4"
+   }
+  },
+  {
+   "command": "solid.combine",
+   "params": {
+    "target": "Post4",
+    "tools": [
+     "OuterRef"
+    ],
+    "operation": "intersect",
+    "keep_tools": true,
+    "name": "Trim post 4"
+   }
+  },
+  {
+   "command": "solid.combine",
+   "params": {
+    "target": "Rear_Body",
+    "tools": [
+     "Post1",
+     "Post2",
+     "Post3",
+     "Post4"
+    ],
+    "operation": "join",
+    "name": "Join posts"
+   }
+  },
+  {
+   "command": "solid.remove",
+   "params": {
+    "bodies": [
+     "OuterRef"
+    ],
+    "name": "Remove helper"
+   }
+  },
+  {
+   "command": "sketch.create",
+   "params": {
+    "plane": "XZ",
+    "offset": 13.15,
+    "name": "Battery rib L"
+   }
+  },
+  {
+   "command": "sketch.line",
+   "params": {
+    "points": [
+     [
+      -14.3137,
+      50.2015
+     ],
+     [
+      -14.3912,
+      50.4052
+     ],
+     [
+      -14.4886,
+      50.6003
+     ],
+     [
+      -14.6047,
+      50.7847
+     ],
+     [
+      -14.7386,
+      50.9568
+     ],
+     [
+      -14.8888,
+      51.1148
+     ],
+     [
+      -15.0539,
+      51.2571
+     ],
+     [
+      -15.2323,
+      51.3824
+     ],
+     [
+      -15.4222,
+      51.4894
+     ],
+     [
+      -15.6217,
+      51.5771
+     ],
+     [
+      -15.829,
+      51.6447
+     ],
+     [
+      -16.0419,
+      51.6913
+     ],
+     [
+      -16.2585,
+      51.7167
+     ],
+     [
+      -16.4764,
+      51.7205
+     ],
+     [
+      -16.6937,
+      51.7028
+     ],
+     [
+      -16.9081,
+      51.6636
+     ],
+     [
+      -17.1176,
+      51.6034
+     ],
+     [
+      -17.3202,
+      51.5227
+     ],
+     [
+      -17.5137,
+      51.4225
+     ],
+     [
+      -17.6964,
+      51.3035
+     ],
+     [
+      -17.8664,
+      51.1671
+     ],
+     [
+      -18.022,
+      51.0145
+     ],
+     [
+      -18.7411,
+      50.2361
+     ],
+     [
+      -6.371,
+      12.1649
+     ],
+     [
+      -0.4276,
+      3.5814
+     ],
+     [
+      0.7136,
+      3.9522
+     ]
+    ],
+    "closed": true
+   }
+  },
+  {
+   "command": "sketch.constraint.fix",
+   "params": {
+    "entities": [
+     "l1",
+     "l2",
+     "l3",
+     "l4",
+     "l5",
+     "l6",
+     "l7",
+     "l8",
+     "l9",
+     "l10",
+     "l11",
+     "l12",
+     "l13",
+     "l14",
+     "l15",
+     "l16",
+     "l17",
+     "l18",
+     "l19",
+     "l20",
+     "l21",
+     "l22",
+     "l23",
+     "l24",
+     "l25",
+     "l26"
+    ]
+   }
+  },
+  {
+   "command": "sketch.finish",
+   "params": {}
+  },
+  {
+   "command": "solid.extrude",
+   "params": {
+    "sketch": "Battery rib L",
+    "distance": 1.5999999999999996,
+    "operation": "join",
+    "targets": [
+     "Rear_Body"
+    ],
+    "name": "Battery rib L extrude"
+   }
+  },
+  {
+   "command": "sketch.create",
+   "params": {
+    "plane": "XZ",
+    "offset": 83.25,
+    "name": "Battery rib R"
+   }
+  },
+  {
+   "command": "sketch.line",
+   "params": {
+    "points": [
+     [
+      -14.3137,
+      50.2015
+     ],
+     [
+      -14.3912,
+      50.4052
+     ],
+     [
+      -14.4886,
+      50.6003
+     ],
+     [
+      -14.6047,
+      50.7847
+     ],
+     [
+      -14.7386,
+      50.9568
+     ],
+     [
+      -14.8888,
+      51.1148
+     ],
+     [
+      -15.0539,
+      51.2571
+     ],
+     [
+      -15.2323,
+      51.3824
+     ],
+     [
+      -15.4222,
+      51.4894
+     ],
+     [
+      -15.6217,
+      51.5771
+     ],
+     [
+      -15.829,
+      51.6447
+     ],
+     [
+      -16.0419,
+      51.6913
+     ],
+     [
+      -16.2585,
+      51.7167
+     ],
+     [
+      -16.4764,
+      51.7205
+     ],
+     [
+      -16.6937,
+      51.7028
+     ],
+     [
+      -16.9081,
+      51.6636
+     ],
+     [
+      -17.1176,
+      51.6034
+     ],
+     [
+      -17.3202,
+      51.5227
+     ],
+     [
+      -17.5137,
+      51.4225
+     ],
+     [
+      -17.6964,
+      51.3035
+     ],
+     [
+      -17.8664,
+      51.1671
+     ],
+     [
+      -18.022,
+      51.0145
+     ],
+     [
+      -18.7411,
+      50.2361
+     ],
+     [
+      -6.371,
+      12.1649
+     ],
+     [
+      -0.4276,
+      3.5814
+     ],
+     [
+      0.7136,
+      3.9522
+     ]
+    ],
+    "closed": true
+   }
+  },
+  {
+   "command": "sketch.constraint.fix",
+   "params": {
+    "entities": [
+     "l1",
+     "l2",
+     "l3",
+     "l4",
+     "l5",
+     "l6",
+     "l7",
+     "l8",
+     "l9",
+     "l10",
+     "l11",
+     "l12",
+     "l13",
+     "l14",
+     "l15",
+     "l16",
+     "l17",
+     "l18",
+     "l19",
+     "l20",
+     "l21",
+     "l22",
+     "l23",
+     "l24",
+     "l25",
+     "l26"
+    ]
+   }
+  },
+  {
+   "command": "sketch.finish",
+   "params": {}
+  },
+  {
+   "command": "solid.extrude",
+   "params": {
+    "sketch": "Battery rib R",
+    "distance": 1.5999999999999943,
+    "operation": "join",
+    "targets": [
+     "Rear_Body"
+    ],
+    "name": "Battery rib R extrude"
+   }
+  },
+  {
+   "command": "sketch.create",
+   "params": {
+    "plane": "XZ",
+    "offset": 20.75,
+    "name": "Battery front stop"
+   }
+  },
+  {
+   "command": "sketch.line",
+   "params": {
+    "points": [
+     [
+      -2.0675,
+      12.5117
+     ],
+     [
+      -5.5864,
+      11.3683
+     ],
+     [
+      -1.0457,
+      5.4835
+     ],
+     [
+      0.0956,
+      5.8543
+     ]
+    ],
+    "closed": true
+   }
+  },
+  {
+   "command": "sketch.constraint.fix",
+   "params": {
+    "entities": [
+     "l1",
+     "l2",
+     "l3",
+     "l4"
+    ]
+   }
+  },
+  {
+   "command": "sketch.finish",
+   "params": {}
+  },
+  {
+   "command": "solid.extrude",
+   "params": {
+    "sketch": "Battery front stop",
+    "distance": 56.5,
+    "operation": "join",
+    "targets": [
+     "Rear_Body"
+    ],
+    "name": "Battery front stop extrude"
+   }
+  },
+  {
+   "command": "solid.combine",
+   "params": {
+    "target": "Rear_Body",
+    "tools": [
+     "Rabbet"
+    ],
+    "operation": "cut",
+    "name": "Cut rabbet"
+   }
+  },
+  {
+   "command": "solid.cylinder",
+   "params": {
+    "radius": 1.7,
+    "height": 85,
+    "base": [
+     -6.75,
+     10.0,
+     -80
+    ],
+    "operation": "cut",
+    "targets": [
+     "Rear_Body"
+    ],
+    "name": "Screw hole 1"
+   }
+  },
+  {
+   "command": "solid.cylinder",
+   "params": {
+    "radius": 3.1,
+    "height": 72.0,
+    "base": [
+     -6.75,
+     10.0,
+     -80
+    ],
+    "operation": "cut",
+    "targets": [
+     "Rear_Body"
+    ],
+    "name": "Counterbore 1"
+   }
+  },
+  {
+   "command": "solid.cylinder",
+   "params": {
+    "radius": 1.7,
+    "height": 85,
+    "base": [
+     -48.75,
+     10.0,
+     -80
+    ],
+    "operation": "cut",
+    "targets": [
+     "Rear_Body"
+    ],
+    "name": "Screw hole 2"
+   }
+  },
+  {
+   "command": "solid.cylinder",
+   "params": {
+    "radius": 3.1,
+    "height": 72.0,
+    "base": [
+     -48.75,
+     10.0,
+     -80
+    ],
+    "operation": "cut",
+    "targets": [
+     "Rear_Body"
+    ],
+    "name": "Counterbore 2"
+   }
+  },
+  {
+   "command": "solid.cylinder",
+   "params": {
+    "radius": 1.7,
+    "height": 85,
+    "base": [
+     -6.75,
+     88.0,
+     -80
+    ],
+    "operation": "cut",
+    "targets": [
+     "Rear_Body"
+    ],
+    "name": "Screw hole 3"
+   }
+  },
+  {
+   "command": "solid.cylinder",
+   "params": {
+    "radius": 3.1,
+    "height": 72.0,
+    "base": [
+     -6.75,
+     88.0,
+     -80
+    ],
+    "operation": "cut",
+    "targets": [
+     "Rear_Body"
+    ],
+    "name": "Counterbore 3"
+   }
+  },
+  {
+   "command": "solid.cylinder",
+   "params": {
+    "radius": 1.7,
+    "height": 85,
+    "base": [
+     -48.75,
+     88.0,
+     -80
+    ],
+    "operation": "cut",
+    "targets": [
+     "Rear_Body"
+    ],
+    "name": "Screw hole 4"
+   }
+  },
+  {
+   "command": "solid.cylinder",
+   "params": {
+    "radius": 3.1,
+    "height": 72.0,
+    "base": [
+     -48.75,
+     88.0,
+     -80
+    ],
+    "operation": "cut",
+    "targets": [
+     "Rear_Body"
+    ],
+    "name": "Counterbore 4"
+   }
+  },
+  {
+   "command": "sketch.create",
+   "params": {
+    "plane": {
+     "origin": [
+      -39.1441,
+      49.0,
+      -29.3275
+     ],
+     "x_dir": [
+      0,
+      1,
+      0
+     ],
+     "y_dir": [
+      -0.707107,
+      0,
+      0.707107
+     ]
+    },
+    "name": "Vents"
+   }
+  },
+  {
+   "command": "sketch.draw.dimensioned",
+   "params": {
+    "command": "sketch.slot.overall",
+    "params": {
+     "p0": [
+      -23,
+      12.9636
+     ],
+     "p1": [
+      23,
+      12.9636
+     ],
+     "width": 1.8
+    },
+    "as_drawn": true,
+    "locate": true
+   }
+  },
+  {
+   "command": "sketch.draw.dimensioned",
+   "params": {
+    "command": "sketch.slot.overall",
+    "params": {
+     "p0": [
+      -23,
+      7.955
+     ],
+     "p1": [
+      23,
+      7.955
+     ],
+     "width": 1.8
+    },
+    "as_drawn": true,
+    "locate": true
+   }
+  },
+  {
+   "command": "sketch.draw.dimensioned",
+   "params": {
+    "command": "sketch.slot.overall",
+    "params": {
+     "p0": [
+      -23,
+      2.9463
+     ],
+     "p1": [
+      23,
+      2.9463
+     ],
+     "width": 1.8
+    },
+    "as_drawn": true,
+    "locate": true
+   }
+  },
+  {
+   "command": "sketch.draw.dimensioned",
+   "params": {
+    "command": "sketch.slot.overall",
+    "params": {
+     "p0": [
+      -23,
+      -2.0624
+     ],
+     "p1": [
+      23,
+      -2.0624
+     ],
+     "width": 1.8
+    },
+    "as_drawn": true,
+    "locate": true
+   }
+  },
+  {
+   "command": "sketch.draw.dimensioned",
+   "params": {
+    "command": "sketch.slot.overall",
+    "params": {
+     "p0": [
+      -23,
+      -7.0711
+     ],
+     "p1": [
+      23,
+      -7.0711
+     ],
+     "width": 1.8
+    },
+    "as_drawn": true,
+    "locate": true
+   }
+  },
+  {
+   "command": "sketch.draw.dimensioned",
+   "params": {
+    "command": "sketch.slot.overall",
+    "params": {
+     "p0": [
+      -23,
+      -12.0798
+     ],
+     "p1": [
+      23,
+      -12.0798
+     ],
+     "width": 1.8
+    },
+    "as_drawn": true,
+    "locate": true
+   }
+  },
+  {
+   "command": "sketch.finish",
+   "params": {}
+  },
+  {
+   "command": "solid.extrude",
+   "params": {
+    "sketch": "Vents",
+    "distance": 24,
+    "direction": "symmetric",
+    "operation": "cut",
+    "targets": [
+     "Rear_Body"
+    ],
+    "name": "Vent slots"
+   }
+  },
+  {
+   "command": "sketch.create",
+   "params": {
+    "plane": {
+     "origin": [
+      4.950926030957213,
+      0,
+      6.5
+     ],
+     "x_dir": [
+      0,
+      1,
+      0
+     ],
+     "y_dir": [
+      -0.3090169943749474,
+      0,
+      -0.9510565162951535
+     ]
+    },
+    "name": "Feet"
+   }
+  },
+  {
+   "command": "sketch.draw.dimensioned",
+   "params": {
+    "command": "sketch.circle.center",
+    "params": {
+     "center": [
+      12.6,
+      8.0
+     ],
+     "diameter": 10
+    },
+    "as_drawn": true,
+    "locate": true
+   }
+  },
+  {
+   "command": "sketch.draw.dimensioned",
+   "params": {
+    "command": "sketch.circle.center",
+    "params": {
+     "center": [
+      85.4,
+      8.0
+     ],
+     "diameter": 10
+    },
+    "as_drawn": true,
+    "locate": true
+   }
+  },
+  {
+   "command": "sketch.draw.dimensioned",
+   "params": {
+    "command": "sketch.circle.center",
+    "params": {
+     "center": [
+      12.6,
+      57.0
+     ],
+     "diameter": 10
+    },
+    "as_drawn": true,
+    "locate": true
+   }
+  },
+  {
+   "command": "sketch.draw.dimensioned",
+   "params": {
+    "command": "sketch.circle.center",
+    "params": {
+     "center": [
+      85.4,
+      57.0
+     ],
+     "diameter": 10
+    },
+    "as_drawn": true,
+    "locate": true
+   }
+  },
+  {
+   "command": "sketch.finish",
+   "params": {}
+  },
+  {
+   "command": "solid.extrude",
+   "params": {
+    "sketch": "Feet",
+    "distance": 1,
+    "operation": "cut",
+    "targets": [
+     "Rear_Body"
+    ],
+    "name": "Feet recesses"
+   }
+  },
+  {
+   "command": "solid.box",
+   "params": {
+    "length": 11.400000000000002,
+    "width": 3.5,
+    "height": 5.199999999999999,
+    "corner": [
+     -33.45,
+     5.1,
+     -16.2
+    ],
+    "operation": "join",
+    "targets": [
+     "Rear_Body"
+    ],
+    "name": "Switch frame"
+   }
+  },
+  {
+   "command": "sketch.create",
+   "params": {
+    "plane": "YZ",
+    "offset": -33.45,
+    "name": "Switch frame wedge"
+   }
+  },
+  {
+   "command": "sketch.line",
+   "params": {
+    "points": [
+     [
+      5.1,
+      -11.0
+     ],
+     [
+      8.6,
+      -11.0
+     ],
+     [
+      5.1,
+      -7.5
+     ]
+    ],
+    "closed": true
+   }
+  },
+  {
+   "command": "sketch.constraint.fix",
+   "params": {
+    "entities": [
+     "l1",
+     "l2",
+     "l3"
+    ]
+   }
+  },
+  {
+   "command": "sketch.finish",
+   "params": {}
+  },
+  {
+   "command": "solid.extrude",
+   "params": {
+    "sketch": "Switch frame wedge",
+    "distance": 11.400000000000002,
+    "operation": "join",
+    "targets": [
+     "Rear_Body"
+    ],
+    "name": "Switch frame wedge extrude"
+   }
+  },
+  {
+   "command": "solid.box",
+   "params": {
+    "length": 9.0,
+    "width": 4.8,
+    "height": 4.0,
+    "corner": [
+     -32.25,
+     4.8,
+     -15.0
+    ],
+    "operation": "cut",
+    "targets": [
+     "Rear_Body"
+    ],
+    "name": "Switch pocket"
+   }
+  },
+  {
+   "command": "sketch.create",
+   "params": {
+    "plane": "XZ",
+    "offset": 2.5999999999999996,
+    "name": "Switch lever slot"
+   }
+  },
+  {
+   "command": "sketch.draw.dimensioned",
+   "params": {
+    "command": "sketch.slot.overall",
+    "params": {
+     "p0": [
+      -30.0,
+      13.0
+     ],
+     "p1": [
+      -25.5,
+      13.0
+     ],
+     "width": 2.2
+    },
+    "as_drawn": true,
+    "locate": true
+   }
+  },
+  {
+   "command": "sketch.finish",
+   "params": {}
+  },
+  {
+   "command": "solid.extrude",
+   "params": {
+    "sketch": "Switch lever slot",
+    "distance": 2.25,
+    "operation": "cut",
+    "targets": [
+     "Rear_Body"
+    ],
+    "name": "Switch lever slot cut"
+   }
+  },
+  {
+   "command": "sketch.create",
+   "params": {
+    "plane": "XZ",
+    "offset": 5.619999999999999,
+    "name": "USB-C opening"
+   }
+  },
+  {
+   "command": "sketch.draw.dimensioned",
+   "params": {
+    "command": "sketch.rectangle.rounded",
+    "params": {
+     "p0": [
+      -34.15,
+      -0.37500000000000044
+     ],
+     "p1": [
+      -21.35,
+      6.824999999999999
+     ],
+     "radius": 3.0
+    },
+    "as_drawn": true,
+    "locate": true
+   }
+  },
+  {
+   "command": "sketch.finish",
+   "params": {}
+  },
+  {
+   "command": "solid.extrude",
+   "params": {
+    "sketch": "USB-C opening",
+    "distance": 20,
+    "direction": "negative",
+    "operation": "cut",
+    "targets": [
+     "Front_Bezel",
+     "Rear_Body"
+    ],
+    "name": "USB-C cut"
+   }
+  },
+  {
+   "command": "solid.box",
+   "params": {
+    "length": 4.800000179896699,
+    "width": 10.750000041889443,
+    "height": 3.699437631837714,
+    "corner": [
+     -52.54178822558023,
+     35.61122305092361,
+     -5.299437631837714
+    ],
+    "operation": "cut",
+    "targets": [
+     "Front_Bezel"
+    ],
+    "name": "Clear MX1.25 4P (top)"
+   }
+  },
+  {
+   "command": "solid.box",
+   "params": {
+    "length": 9.540000200000005,
+    "width": 8.18000021967007,
+    "height": 3.5494373302292623,
+    "corner": [
+     -32.52000351796,
+     5.33158677445971,
+     -5.149437330229262
+    ],
+    "operation": "cut",
+    "targets": [
+     "Front_Bezel"
+    ],
+    "name": "Clear USB-C body"
+   }
+  },
+  {
+   "command": "solid.box",
+   "params": {
+    "length": 15.24043808,
+    "width": 6.255645279999996,
+    "height": 0.34943718910200006,
+    "corner": [
+     -35.48383940132,
+     85.744840697324,
+     -1.9494371891020001
+    ],
+    "operation": "cut",
+    "targets": [
+     "Front_Bezel"
+    ],
+    "name": "Clear antenna area"
+   }
+  },
+  {
+   "command": "solid.box",
+   "params": {
+    "length": 5.1,
+    "width": 9.600000000000001,
+    "height": 9.4,
+    "corner": [
+     -8.0,
+     37.6,
+     -11.0
+    ],
+    "operation": "cut",
+    "targets": [
+     "Rear_Body"
+    ],
+    "name": "Clear speaker plug"
+   }
+  },
+  {
+   "command": "appearance.assign",
+   "params": {
+    "bodies": [
+     "Front_Bezel"
+    ],
+    "color": "#e8e6df"
+   }
+  },
+  {
+   "command": "appearance.assign",
+   "params": {
+    "bodies": [
+     "Rear_Body"
+    ],
+    "color": "#3a3f47"
+   }
+  }
+ ]
+}

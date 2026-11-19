@@ -1,0 +1,5 @@
+*.bak
+__pycache__/
+solidcraft/check/ES3C28P_3D.step
+solidcraft/check/*_out*.json
+cadquery_cu/

@@ -1,0 +1,175 @@
+{
+ "commands": [
+  {
+   "command": "parameters.change",
+   "params": {
+    "name": "TH",
+    "expression": "15 deg"
+   }
+  },
+  {
+   "command": "document.inspect",
+   "params": {
+    "measure": true
+   }
+  },
+  {
+   "command": "parameters.change",
+   "params": {
+    "name": "TH",
+    "expression": "21 deg"
+   }
+  },
+  {
+   "command": "document.inspect",
+   "params": {
+    "measure": true
+   }
+  },
+  {
+   "command": "parameters.change",
+   "params": {
+    "name": "TH",
+    "expression": "18 deg"
+   }
+  },
+  {
+   "command": "parameters.change",
+   "params": {
+    "name": "LB",
+    "expression": "82 mm"
+   }
+  },
+  {
+   "command": "document.inspect",
+   "params": {
+    "measure": true
+   }
+  },
+  {
+   "command": "parameters.change",
+   "params": {
+    "name": "LB",
+    "expression": "90 mm"
+   }
+  },
+  {
+   "command": "document.inspect",
+   "params": {
+    "measure": true
+   }
+  },
+  {
+   "command": "parameters.change",
+   "params": {
+    "name": "LB",
+    "expression": "86 mm"
+   }
+  },
+  {
+   "command": "parameters.change",
+   "params": {
+    "name": "FIL",
+    "expression": "2.6 mm"
+   }
+  },
+  {
+   "command": "document.inspect",
+   "params": {
+    "measure": true
+   }
+  },
+  {
+   "command": "parameters.change",
+   "params": {
+    "name": "FIL",
+    "expression": "4 mm"
+   }
+  },
+  {
+   "command": "document.inspect",
+   "params": {
+    "measure": true
+   }
+  },
+  {
+   "command": "parameters.change",
+   "params": {
+    "name": "FIL",
+    "expression": "3 mm"
+   }
+  },
+  {
+   "command": "parameters.change",
+   "params": {
+    "name": "ZTB",
+    "expression": "-10 mm"
+   }
+  },
+  {
+   "command": "document.inspect",
+   "params": {
+    "measure": true
+   }
+  },
+  {
+   "command": "parameters.change",
+   "params": {
+    "name": "ZTB",
+    "expression": "-15 mm"
+   }
+  },
+  {
+   "command": "document.inspect",
+   "params": {
+    "measure": true
+   }
+  },
+  {
+   "command": "parameters.change",
+   "params": {
+    "name": "ZTB",
+    "expression": "-12 mm"
+   }
+  },
+  {
+   "command": "parameters.change",
+   "params": {
+    "name": "WALL",
+    "expression": "1.6 mm"
+   }
+  },
+  {
+   "command": "document.inspect",
+   "params": {
+    "measure": true
+   }
+  },
+  {
+   "command": "parameters.change",
+   "params": {
+    "name": "WALL",
+    "expression": "2.4 mm"
+   }
+  },
+  {
+   "command": "document.inspect",
+   "params": {
+    "measure": true
+   }
+  },
+  {
+   "command": "parameters.change",
+   "params": {
+    "name": "WALL",
+    "expression": "2 mm"
+   }
+  },
+  {
+   "command": "document.inspect",
+   "params": {
+    "measure": true
+   }
+  }
+ ]
+}
